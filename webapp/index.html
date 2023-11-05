@@ -19,6 +19,25 @@
                 <input type="text" autoComplete="none" autoCorrect="none" autoCapitalize="none" spellCheck="false" placeholder="Search products..." />
                 <button class="clear">&times;</button>
               </div>
+              
+              <ul class="SuggestionList">
+              </ul>
+
+              <details class="AdvancedOptions">
+                <summary>Advanced options</summary>
+                <form class="options">
+                  <div>
+                    <b>Search options:</b>
+                    <label><input type="checkbox" name="prefix" value="true" checked /> Prefix</label>
+                    <label><input type="checkbox" name="fuzzy" value="true" checked /> Fuzzy</label>
+                  </div>
+                  <div>
+                    <b>Combine terms with:</b>
+                    <label><input type="radio" name="combineWith" value="OR" checked /> OR</label>
+                    <label><input type="radio" name="combineWith" value="AND" /> AND</label>
+                  </div>
+                </form>
+              </details>
             </div>
           </header>
           <p class="Explanation">

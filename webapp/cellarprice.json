@@ -1,1 +1,5 @@
-[{"product": "Pack of Oreos (13.29 oz)", "price": 9.59}, {"product": "Trident White", "price": 2.12}, {"product": "Ice Breakers", "price": 3.51}, {"product": "Fruit Loops", "price": 8.32}, {"product": "Minute Maid Orange Juice (6-can pack)", "price": 17.22}]
+[{"id":0,"product":"Pack of Oreos (13.29 oz)","price":9.59},
+{"id":1,"product":"Trident White","price":2.12},
+{"id":2,"product":"Ice Breakers","price":3.51},
+{"id":3,"product":"Fruit Loops","price":8.32},
+{"id":4,"product":"Minute Maid Orange Juice (6-can pack)","price":17.22}]
