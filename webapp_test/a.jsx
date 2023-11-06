@@ -1,19 +1,22 @@
-const e = React.createElement;
+import React, {Component} from "https://unpkg.com/react@18/umd/react.production.min.js";
+import { createRoot} from "https://unpkg.com/react-dom@18/umd/react-dom.production.min.js";
 
+// class App extends Component {
+//   render() {
+//     return (
+//       <h1> Heelo World</h1>
+//     );
+//   }
+// }
 
 // ReactDOM.render(<App />, document.getElementById('root'))
-// import { jsx as _jsx } from "react/jsx-runtime";
-// import { Fragment as _Fragment } from "react/jsx-runtime";
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
-    e("div", null,
-        e('h1', null, 'Greetings, ' + "test" + '!'),
-        e('h1', null, 'mimi ' + "leo" + '!')
-    )
-
-    
-    // return <h1> Greetings test ! </h1>
+  <>
+    <h1>test</h1>
+  </>
 );
+
 
 const MiniSearch = require('minisearch')
 
