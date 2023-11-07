@@ -9,7 +9,6 @@ class item_info:
         self.name = name
         self.price = price
 
-
 def main():
     print("please input name and price")
     mega_list = {}
@@ -17,7 +16,7 @@ def main():
     price = 0
     
     while(1):
-        print("add [1] | delete [2] | view [3] | remove csv duplicates [4] | exit [5]")
+        print("add [1] | delete [2] | view [3] | csv info [4] | exit [5]")
         c = input()
         if int(c) not in [1, 2, 3, 4, 5]:
             continue
@@ -53,47 +52,59 @@ def main():
                 print(item.name, item.price)
 
         elif c == "4":
+            header = ["id", "name", "price"]
             csv_file_path = 'item_info.csv'
-            column_index = 0
+            column_index = 1
             unique_names = set()
+            removed_names = set()
 
             with open(csv_file_path, 'r', newline='') as file:
                 reader = csv.reader(file)
                 data = list(reader)
-                print(data)
+                print("CSV size: " + str(len(data)))
                 # Iterate through the rows and update the set of unique names
-                new_data = [] 
-                for row in data:
-                    name = row[column_index]
-                    if name not in unique_names:
-                        new_data.append(row)
-                        unique_names.add(name)
-                
-                print("removed " + str(unique_names) + "\n")
 
-            # Save the updated data to a new CSV file or overwrite the existing one
-            with open('item_info.csv', 'w', newline='') as file:
-                writer = csv.writer(file)
-                writer.writerows(new_data)
+            print()
+    
+
+            
                 
         else:
+            # what id are we on?
+            id_count = 0
+            unique_names = set()
             # write to csv and convert that to json
             csv_file = 'item_info.csv'
-            header = ["name", "price"]
+            header = ["id", "name", "price"]
             if not os.path.exists(csv_file):
                 f_output = open(csv_file ,'w')
                 writer = csv.DictWriter(f_output, fieldnames=header)
                 writer.writeheader()
             else:
-                f_output = open(csv_file ,'a')
+                # set id to next id
+                with open("item_info.csv") as f:
+                    reader = csv.reader(f)
+                    for row in reader:
+                        id_count += 1
+                        # print(row)
+                        unique_names.add(row[1])
+
+
+                f_output = open(csv_file, 'a')
                 writer = csv.DictWriter(f_output, fieldnames=header)
+            
+            # print(id_count, unique_names)
 
             for elem in mega_list:
                 item = mega_list[elem]
-                writer.writerow({'name':item.name.replace('-', ' '), 'price': '%.2f' % item.price})
+                if item.name.replace('-', ' ') not in unique_names:
+                    writer.writerow({'id': id_count, 'name': item.name.replace('-', ' '), 'price': '%.2f' % item.price})
+                    id_count += 1
+                    print("writing" + item.name.replace('-', ' '))
 
             f_output.close()
             print("written to csv")
+            
 
             # overwrite json file / write to json
             json_file = 'item_info.json'

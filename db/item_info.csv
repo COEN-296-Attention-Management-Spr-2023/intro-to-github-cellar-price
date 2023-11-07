@@ -1,4 +1,7 @@
-name,price
-Agua Frescas Hibiscus,3.59
-Agua Frescas Hibiscus,3.59
-Lays Potato Chips Barbeque Large,5.99
+id,name,price
+0,Meiji Chocolate Bar Dark,1.59
+1,Agua Frescas Hibiscus,3.59
+2,Lays Potato Chips Barbeque Large,5.99
+4,dog,567.89
+5,cat,3.23
+6,log,9.00

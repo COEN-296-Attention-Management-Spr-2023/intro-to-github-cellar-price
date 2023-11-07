@@ -28,11 +28,9 @@ You are given 4 options
 
 - 3 --> view mega list
 
-- 4 --> remove duplicates in csv
+- 4 --> exit and write to csv and json
 
-- 5 --> exit and write to csv and json
-
-  
+Duplicate checking is implemented when writing.
   
   
 
@@ -47,7 +45,7 @@ Some examples:
 
 - Agua-Frescas-Hibiscus 3.59
 
-- Meiji-Chocolate-Bar-Dark 1.59
+- Meiji-Chocolate-Bar-Dark 1.59 Agua-Frescas-Hibiscus 3.59 Lays-Potato-Chips-Barbeque-Large 5.99
 
 - Lays-Potato-Chips-Barbeque-Large 5.99
 
@@ -101,14 +99,9 @@ dashes will be converted to spaces
 	Lays-Potato-Chips-Barbeque-Large 5.99
 
 	> add [1] | delete [2] | view [3] | remove csv duplicates [4] | exit [5]
-
 	4
+	> CSV size: 7
 
-	> [['name', 'price'], ['Agua Frescas Hibiscus', '3.59']]
-
-	removed {'name', 'Agua Frescas Hibiscus'}
-
-	  
 
 	> add [1] | delete [2] | view [3] | remove csv duplicates [4] | exit [5]
 
