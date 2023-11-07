@@ -75,7 +75,7 @@ def main():
             unique_names = set()
             # write to csv and convert that to json
             csv_file = 'item_info.csv'
-            header = ["id", "name", "price"]
+            header = ["id", "name", "price", "img", "category"]
             if not os.path.exists(csv_file):
                 f_output = open(csv_file ,'w')
                 writer = csv.DictWriter(f_output, fieldnames=header)
@@ -98,7 +98,10 @@ def main():
             for elem in mega_list:
                 item = mega_list[elem]
                 if item.name.replace('-', ' ') not in unique_names:
-                    writer.writerow({'id': id_count, 'name': item.name.replace('-', ' '), 'price': '%.2f' % item.price})
+                    writer.writerow(
+                        {'id': id_count, 'name': item.name.replace('-', ' '), 'price': '%.2f' % item.price, 
+                         'img': "IMG", 'category':[]}
+                        )
                     id_count += 1
                     print("writing" + item.name.replace('-', ' '))
 
