@@ -7,28 +7,28 @@ function Main({
   results,
   suggestions,
   name,
+  setName,
   fuzzy,
-  editFuzzy,
+  setFuzzy,
   prefix,
-  editPrefix,
+  setPrefix,
   combineWith,
-  editCombineWith,
+  setCombineWith,
   updateLists,
-  clearButton,
   selectSuggestion }) {
   return (
     <article className="main">
       <Header 
         suggestions={suggestions} 
         name={name} 
+        setName={setName}
         fuzzy={fuzzy}
-        editFuzzy={editFuzzy}
+        setFuzzy={setFuzzy}
         prefix={prefix}
-        editPrefix={editPrefix}
+        setPrefix={setPrefix}
         combineWith={combineWith}
-        editCombineWith={editCombineWith}
+        setCombineWith={setCombineWith}
         updateLists={updateLists} 
-        clearButton={clearButton}
         selectSuggestion={selectSuggestion}
         />
       <Explanation />
@@ -40,14 +40,14 @@ function Main({
 function Header({ 
   suggestions, 
   name, 
+  setName,
   fuzzy,
-  editFuzzy,
+  setFuzzy,
   prefix,
-  editPrefix,
+  setPrefix,
   combineWith,
-  editCombineWith,
+  setCombineWith,
   updateLists, 
-  clearButton,
   selectSuggestion }) {
   return (
     <header className="Header">
@@ -55,14 +55,14 @@ function Header({
       <SearchBox 
         suggestions={suggestions} 
         name={name} 
+        setName={setName}
         fuzzy={fuzzy}
-        editFuzzy={editFuzzy}
+        setFuzzy={setFuzzy}
         prefix={prefix}
-        editPrefix={editPrefix}
+        setPrefix={setPrefix}
         combineWith={combineWith}
-        editCombineWith={editCombineWith}
+        setCombineWith={setCombineWith}
         updateLists={updateLists} 
-        clearButton={clearButton}
         selectSuggestion={selectSuggestion}
         />
     </header>

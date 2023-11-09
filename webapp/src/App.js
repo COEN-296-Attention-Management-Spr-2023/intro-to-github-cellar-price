@@ -30,44 +30,20 @@ function App() {
 
   const [results, setResults] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
-
-  function update(){
-    setResults((name.length > 1) ? getSearchResults(name) : getSearchResults('*'));
+  
+  function updateLists(){
+    setResults((name.length > 1) ? getSearchResults(name) : getSearchResults(MiniSearch.wildcard));
     setSuggestions((name.length > 1) ? getSuggestions(name) : []);
-  }
-
-  function updateLists(e){
-    setName(e.target.value);
-    update();
+    console.log('name = ' + name);
   }
 
   function clearSuggestions(){
     setSuggestions([]);
   }
 
-  function clearButton(){
-    setName('');
-    update();
-  }
-
-  function editFuzzy(e){
-    setFuzzy(e.target.checked);
-    update();
-  }
-
-  function editPrefix(e){
-    setPrefix(e.target.checked);
-    update();
-  }
-
-  function editCombineWith(e){
-    setCombineWith(e.target.value);
-    update();
-  }
-
-  function selectSuggestion(_name){
-    setName(_name);
-    setResults(getSearchResults(_name));
+  function selectSuggestion(){
+    console.log('name = ' + name);
+    setResults(getSearchResults(name));
     setSuggestions([]);
   }
 
@@ -93,7 +69,7 @@ function App() {
   }
 
   return (
-    <div id="app" onClick={e => clearSuggestions()}>
+    <div id="app" onClick={clearSuggestions}>
       <div className="App">
         {
           loading ?
@@ -102,14 +78,14 @@ function App() {
             results={results}
             suggestions={suggestions} 
             name={name} 
+            setName={setName}
             fuzzy={fuzzy}
-            editFuzzy={editFuzzy}
+            setFuzzy={setFuzzy}
             prefix={prefix}
-            editPrefix={editPrefix}
+            setPrefix={setPrefix}
             combineWith={combineWith}
-            editCombineWith={editCombineWith}
+            setCombineWith={setCombineWith}
             updateLists={updateLists} 
-            clearButton={clearButton} 
             selectSuggestion={selectSuggestion}
           />)
         }

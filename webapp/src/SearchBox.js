@@ -3,33 +3,35 @@ import './SearchBox.css';
 function SearchBox({ 
   suggestions, 
   name, 
+  setName,
   fuzzy,
-  editFuzzy,
+  setFuzzy,
   prefix,
-  editPrefix,
+  setPrefix,
   combineWith,
-  editCombineWith,
+  setCombineWith,
   updateLists, 
-  clearButton,
   selectSuggestion }) {
   return (
     <div className="SearchBox">
       <Search 
         name={name} 
-        updateLists={updateLists} 
-        clearButton={clearButton} />
+        setName={setName}
+        updateLists={updateLists} />
       
       <SuggestionList 
+        setName={setName}
         suggestions={suggestions}
         selectSuggestion={selectSuggestion} />
 
       <AdvancedOptions 
         fuzzy={fuzzy}
-        editFuzzy={editFuzzy}
+        setFuzzy={setFuzzy}
         prefix={prefix}
-        editPrefix={editPrefix}
+        setPrefix={setPrefix}
         combineWith={combineWith}
-        editCombineWith={editCombineWith}
+        setCombineWith={setCombineWith}
+        updateLists={updateLists}
       />
     </div>
   );
@@ -37,19 +39,28 @@ function SearchBox({
 
 function Search({ 
   name, 
-  updateLists, 
-  clearButton }) {
+  setName,
+  updateLists}) {
   return (
     <div className="Search">
-      <input value={name} onChange={updateLists} type="text" autoComplete="none" autoCorrect="none" autoCapitalize="none" spellCheck="false" placeholder="Search products..." />
-      <button className="clear" onClick={clearButton}>&times;</button>
+      <input value={name} onChange={e => {
+        setName(e.target.value); 
+        updateLists();}} 
+        type="text" autoComplete="none" autoCorrect="none" autoCapitalize="none" spellCheck="false" placeholder="Search products..." />
+      <button className="clear" onClick={e => {
+        setName(''); 
+        updateLists();}}
+        >&times;</button>
     </div>
   );
 }
-function SuggestionList({ suggestions, selectSuggestion }) {
+function SuggestionList({ setName, suggestions, selectSuggestion }) {
   function renderSuggestions(suggestions) {
     const listSuggestions = suggestions.map(suggestion => 
-      <li onClick={e => selectSuggestion(e.target.value)} className="Suggestion"> {suggestion.suggestion} </li>
+      <li key={suggestion.score} onClick={e => {
+        setName(e.target.value); 
+        selectSuggestion()}} 
+        className="Suggestion"> {suggestion.suggestion} </li>
     );
     return listSuggestions;
   }
@@ -66,24 +77,41 @@ function SuggestionList({ suggestions, selectSuggestion }) {
 }
 function AdvancedOptions({
   fuzzy,
-  editFuzzy,
+  setFuzzy,
   prefix,
-  editPrefix,
+  setPrefix,
   combineWith,
-  editCombineWith }) {
+  setCombineWith,
+  updateLists }) {
   return (
     <details className="AdvancedOptions">
       <summary>Advanced options</summary>
       <form className="options">
         <div>
           <b>Search options:</b>
-          <label><input type="checkbox" name="prefix" checked={prefix} onChange={editPrefix}/> Prefix</label>
-          <label><input type="checkbox" name="fuzzy" checked={fuzzy} onChange={editFuzzy}/> Fuzzy</label>
+          <label><input type="checkbox" name="prefix" checked={prefix} onChange={e => {
+            setPrefix(e.target.checked);
+            console.log('prefix = ' + prefix);
+            updateLists();}}
+            /> Prefix</label>
+          <label><input type="checkbox" name="fuzzy" checked={fuzzy} onChange={e => {
+            setFuzzy(e.target.checked);
+            console.log('fuzzy = ' + fuzzy);
+            updateLists();}}
+            /> Fuzzy</label>
         </div>
         <div>
           <b>Combine terms with:</b>
-          <label><input type="radio" name="combineWith" value="OR" checked={combineWith === 'OR'} onChange={editCombineWith} /> OR</label>
-          <label><input type="radio" name="combineWith" value="AND" checked={combineWith !== 'OR'} onChange={editCombineWith} /> AND</label>
+          <label><input type="radio" name="combineWith" value="OR" checked={combineWith === 'OR'} onChange={e => {
+            setCombineWith(e.target.value);
+            console.log('combineWith = ' + combineWith);
+            updateLists();}} 
+            /> OR</label>
+          <label><input type="radio" name="combineWith" value="AND" checked={combineWith === 'AND'} onChange={e => {
+            setCombineWith(e.target.value);
+            console.log('combineWith = ' + combineWith);
+            updateLists();}} 
+            /> AND</label>
         </div>
       </form>
     </details>
