@@ -1,0 +1,46 @@
+.Header h1 {
+  font-size: 2em;
+  margin-top: 0;
+}
+.hasResults .Explanation {
+  display: none;
+}
+.ProductList {
+  margin: 1em 0 0 0;
+  padding: 0;
+  list-style: none;
+  flex-grow: 1;
+  position: relative;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.ProductList:before,
+.ProductList:after {
+  content: '';
+  display: block;
+  position: sticky;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  height: 0.7em;
+  margin-bottom: -0.7em;
+}
+.ProductList:before {
+  top: -1px;
+  background: linear-gradient(white, rgba(255, 255, 255, 0));
+}
+.ProductList:after {
+  bottom: -1px;
+  background: linear-gradient(rgba(255, 255, 255, 0), white);
+}
+.Product {
+  border-bottom: 1px solid #ccc;
+  padding: 0.7em 0 1em 0;
+}
+.Product:last-child {
+  border-bottom: none;
+}
+.Product h3 {
+  margin-top: 0;
+  margin-bottom: 0.15em;
+}
