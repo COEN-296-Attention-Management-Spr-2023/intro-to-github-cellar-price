@@ -1,4 +1,6 @@
 // Setup MiniSearch
+import MiniSearch from 'minisearch'
+
 const ItemSearch = new MiniSearch({
   fields: ['product'],
   storeFields: ['product', 'price']
@@ -98,14 +100,6 @@ $options.addEventListener('change', (event) => {
 })
 
 // Define functions and support variables
-const searchOptions = {
-  fuzzy: 0.2,
-  prefix: true,
-  fields: ['products', 'prices'],
-  combineWith: 'OR',
-  filter: null
-}
-
 const getSearchResults = (query) => {
   const searchOptions = getSearchOptions()
   return ItemSearch.search(query, searchOptions).map(({ id }) => productsById[id])

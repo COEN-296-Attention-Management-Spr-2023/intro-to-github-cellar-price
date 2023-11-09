@@ -1,0 +1,72 @@
+.SearchBox {
+  position: relative;
+}
+.Search {
+  position: relative;
+}
+.Search button.clear {
+  position: absolute;
+  top: 0;
+  bottom: 0.2em;
+  right: 0.5em;
+  font-size: 1.5em;
+  line-height: 1;
+  z-index: 20;
+  border: none;
+  background: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+.Search input {
+  width: 100%;
+  padding: 0.5em;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+  color: #555;
+  box-shadow: none;
+}
+.AdvancedOptions {
+  font-size: 0.9em;
+}
+.AdvancedOptions summary {
+  text-decoration: underline;
+}
+.AdvancedOptions .options {
+  margin-top: 1em;
+  font-size: 0.85em;
+}
+.AdvancedOptions .options label {
+  display: inline;
+  margin-left: 0.7em;
+}
+.SuggestionList {
+  display: none;
+  list-style: none;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-top: 0;
+  margin: 0 0 0.2em 0;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.93);
+  position: absolute;
+  z-index: 20;
+  left: 0;
+  right: 0;
+}
+.Suggestion {
+  padding: 0.5em 1em;
+  border-bottom: 1px solid #eee;
+}
+.Suggestion:last-child {
+  border: none;
+}
+.Suggestion.selected {
+  background: rgba(240, 240, 240, 0.95);
+}
+.Suggestion:hover:not(.selected) {
+  background: rgba(250, 250, 250, 0.95);
+}
