@@ -1,9 +1,4 @@
-id,product,price,img,category
-0,Meiji Chocolate Bar Dark,1.59,IMG,[]
-1,Agua Frescas Hibiscus,3.59,IMG,[]
-2,Lays Potato Chips Barbeque Large,5.99,IMG,[]
-4,Oreos (13.29 oz),9.59,IMG,[]
-5,Trident White,2.12,IMG,[]
-6,Ice Breakers,3.51,IMG,[]
-7,Fruit Loops,8.32,IMG,[]
-8,Minute Maid Orange Juice (6 cans),17.22,IMG,[]
+id,product,price,img,desc,category
+0,Meiji Chocolate Bar Dark,1.59,IMG,DSC,CTG
+1,Agua Frescas Hibiscus,3.59,IMG,DSC,CTG
+2,Lays Potato Chips Barbeque Large,5.99,IMG,DSC,CTG

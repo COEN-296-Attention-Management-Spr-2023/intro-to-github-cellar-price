@@ -75,7 +75,7 @@ def main():
             unique_names = set()
             # write to csv and convert that to json
             csv_file = 'item_info.csv'
-            header = ["id", "product", "price", "img", "category"]
+            header = ["id", "product", "price", "img", "desc", "category"]
             if not os.path.exists(csv_file):
                 f_output = open(csv_file ,'w')
                 writer = csv.DictWriter(f_output, fieldnames=header)
@@ -100,10 +100,10 @@ def main():
                 if item.name.replace('-', ' ') not in unique_names:
                     writer.writerow(
                         {'id': id_count, 'product': item.name.replace('-', ' '), 'price': '%.2f' % item.price, 
-                         'img': "IMG", 'category':[]}
+                         'img': "IMG", 'desc':"DSC", 'category':"CTG"}
                         )
                     id_count += 1
-                    print("writing" + item.name.replace('-', ' '))
+                    print("writing " + item.name.replace('-', ' '))
 
             f_output.close()
             print("written to csv")
