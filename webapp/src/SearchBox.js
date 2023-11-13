@@ -4,25 +4,25 @@ function SearchBox({
   suggestions, 
   name, 
   setName,
+  setSuggestName,
   fuzzy,
   setFuzzy,
   prefix,
   setPrefix,
   combineWith,
-  setCombineWith,
-  updateLists, 
-  selectSuggestion }) {
+  setCombineWith, }) {
   return (
     <div className="SearchBox">
       <Search 
         name={name} 
         setName={setName}
-        updateLists={updateLists} />
+        setSuggestName={setSuggestName}
+        />
       
       <SuggestionList 
         setName={setName}
-        suggestions={suggestions}
-        selectSuggestion={selectSuggestion} />
+        setSuggestName={setSuggestName}
+        suggestions={suggestions} />
 
       <AdvancedOptions 
         fuzzy={fuzzy}
@@ -31,7 +31,6 @@ function SearchBox({
         setPrefix={setPrefix}
         combineWith={combineWith}
         setCombineWith={setCombineWith}
-        updateLists={updateLists}
       />
     </div>
   );
@@ -40,26 +39,26 @@ function SearchBox({
 function Search({ 
   name, 
   setName,
-  updateLists}) {
+  setSuggestName}) {
   return (
     <div className="Search">
       <input value={name} onChange={e => {
-        setName(e.target.value); 
-        updateLists();}} 
+        setName(e.target.value);
+        setSuggestName(e.target.value)}} 
         type="text" autoComplete="none" autoCorrect="none" autoCapitalize="none" spellCheck="false" placeholder="Search products..." />
       <button className="clear" onClick={e => {
-        setName(''); 
-        updateLists();}}
+        setName('');
+        setSuggestName('')}}
         >&times;</button>
     </div>
   );
 }
-function SuggestionList({ setName, suggestions, selectSuggestion }) {
+function SuggestionList({ setName, suggestions, setSuggestName }) {
   function renderSuggestions(suggestions) {
     const listSuggestions = suggestions.map(suggestion => 
-      <li key={suggestion.score} onClick={e => {
-        setName(e.target.value); 
-        selectSuggestion()}} 
+      <li key={suggestion.suggestion} onClick={e => {
+        setName(suggestion.suggestion); 
+        setSuggestName('');}} 
         className="Suggestion"> {suggestion.suggestion} </li>
     );
     return listSuggestions;
@@ -81,8 +80,7 @@ function AdvancedOptions({
   prefix,
   setPrefix,
   combineWith,
-  setCombineWith,
-  updateLists }) {
+  setCombineWith }) {
   return (
     <details className="AdvancedOptions">
       <summary>Advanced options</summary>
@@ -91,26 +89,22 @@ function AdvancedOptions({
           <b>Search options:</b>
           <label><input type="checkbox" name="prefix" checked={prefix} onChange={e => {
             setPrefix(e.target.checked);
-            console.log('prefix = ' + prefix);
-            updateLists();}}
+            console.log('prefix = ' + prefix);}}
             /> Prefix</label>
           <label><input type="checkbox" name="fuzzy" checked={fuzzy} onChange={e => {
             setFuzzy(e.target.checked);
-            console.log('fuzzy = ' + fuzzy);
-            updateLists();}}
+            console.log('fuzzy = ' + fuzzy);}}
             /> Fuzzy</label>
         </div>
         <div>
           <b>Combine terms with:</b>
           <label><input type="radio" name="combineWith" value="OR" checked={combineWith === 'OR'} onChange={e => {
             setCombineWith(e.target.value);
-            console.log('combineWith = ' + combineWith);
-            updateLists();}} 
+            console.log('combineWith = ' + combineWith);}} 
             /> OR</label>
           <label><input type="radio" name="combineWith" value="AND" checked={combineWith === 'AND'} onChange={e => {
             setCombineWith(e.target.value);
-            console.log('combineWith = ' + combineWith);
-            updateLists();}} 
+            console.log('combineWith = ' + combineWith);}} 
             /> AND</label>
         </div>
       </form>

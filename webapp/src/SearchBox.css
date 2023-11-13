@@ -43,7 +43,7 @@
   margin-left: 0.7em;
 }
 .SuggestionList {
-  display: none;
+  display: block;
   list-style: none;
   padding: 0;
   border: 1px solid #ccc;

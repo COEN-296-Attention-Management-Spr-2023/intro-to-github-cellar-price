@@ -8,28 +8,26 @@ function Main({
   suggestions,
   name,
   setName,
+  setSuggestName,
   fuzzy,
   setFuzzy,
   prefix,
   setPrefix,
   combineWith,
-  setCombineWith,
-  updateLists,
-  selectSuggestion }) {
+  setCombineWith }) {
   return (
     <article className="main">
       <Header 
         suggestions={suggestions} 
         name={name} 
         setName={setName}
+        setSuggestName={setSuggestName}
         fuzzy={fuzzy}
         setFuzzy={setFuzzy}
         prefix={prefix}
         setPrefix={setPrefix}
         combineWith={combineWith}
         setCombineWith={setCombineWith}
-        updateLists={updateLists} 
-        selectSuggestion={selectSuggestion}
         />
       <Explanation />
       <ProductList results={results}/>
@@ -41,14 +39,13 @@ function Header({
   suggestions, 
   name, 
   setName,
+  setSuggestName,
   fuzzy,
   setFuzzy,
   prefix,
   setPrefix,
   combineWith,
-  setCombineWith,
-  updateLists, 
-  selectSuggestion }) {
+  setCombineWith }) {
   return (
     <header className="Header">
       <h1>Product Catalog</h1>
@@ -56,14 +53,13 @@ function Header({
         suggestions={suggestions} 
         name={name} 
         setName={setName}
+        setSuggestName={setSuggestName}
         fuzzy={fuzzy}
         setFuzzy={setFuzzy}
         prefix={prefix}
         setPrefix={setPrefix}
         combineWith={combineWith}
         setCombineWith={setCombineWith}
-        updateLists={updateLists} 
-        selectSuggestion={selectSuggestion}
         />
     </header>
   );
