@@ -10,7 +10,9 @@ function SearchBox({
   prefix,
   setPrefix,
   combineWith,
-  setCombineWith, }) {
+  setCombineWith,
+  category,
+  setCategory }) {
   return (
     <div className="SearchBox">
       <Search 
@@ -31,6 +33,8 @@ function SearchBox({
         setPrefix={setPrefix}
         combineWith={combineWith}
         setCombineWith={setCombineWith}
+        category={category}
+        setCategory={setCategory}
       />
     </div>
   );
@@ -80,7 +84,9 @@ function AdvancedOptions({
   prefix,
   setPrefix,
   combineWith,
-  setCombineWith }) {
+  setCombineWith,
+  category,
+  setCategory }) {
   return (
     <details className="AdvancedOptions">
       <summary>Advanced options</summary>
@@ -89,23 +95,38 @@ function AdvancedOptions({
           <b>Search options:</b>
           <label><input type="checkbox" name="prefix" checked={prefix} onChange={e => {
             setPrefix(e.target.checked);
-            console.log('prefix = ' + prefix);}}
+            console.log('prefix = ' + e.target.checked);}}
             /> Prefix</label>
           <label><input type="checkbox" name="fuzzy" checked={fuzzy} onChange={e => {
             setFuzzy(e.target.checked);
-            console.log('fuzzy = ' + fuzzy);}}
+            console.log('fuzzy = ' + e.target.checked);}}
             /> Fuzzy</label>
         </div>
         <div>
           <b>Combine terms with:</b>
           <label><input type="radio" name="combineWith" value="OR" checked={combineWith === 'OR'} onChange={e => {
             setCombineWith(e.target.value);
-            console.log('combineWith = ' + combineWith);}} 
+            console.log('combineWith = ' + e.target.value);}} 
             /> OR</label>
           <label><input type="radio" name="combineWith" value="AND" checked={combineWith === 'AND'} onChange={e => {
             setCombineWith(e.target.value);
-            console.log('combineWith = ' + combineWith);}} 
+            console.log('combineWith = ' + e.target.value);}} 
             /> AND</label>
+        </div>
+        <div>
+          <b>Select category:</b>
+          <label>
+            <select 
+            name="category"
+            value={category}
+            onChange={e => {setCategory(e.target.value); console.log('category = ' + e.target.value);}}
+            >
+              <option value="none">None</option>
+              <option value="food">Food</option>
+              <option value="drink">Drink</option>
+              <option value="amenities">Amenities</option>
+            </select>
+          </label>
         </div>
       </form>
     </details>

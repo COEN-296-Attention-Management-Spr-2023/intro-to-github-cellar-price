@@ -30,6 +30,7 @@ function App() {
   const [fuzzy, setFuzzy] = useState(true);
   const [prefix, setPrefix] = useState(true);
   const [combineWith, setCombineWith] = useState('OR');
+  const [category, setCategory] = useState('none');
   
   function getSearchOptions() {
     const searchOptions = {}
@@ -37,6 +38,7 @@ function App() {
     searchOptions.fuzzy = fuzzy ? 0.2 : false
     searchOptions.prefix = prefix
     searchOptions.combineWith = combineWith
+    searchOptions.filter = category === 'none' ? (result) => true : (result) => result.category === category
   
     return searchOptions
   }
@@ -80,6 +82,8 @@ function App() {
             setPrefix={setPrefix}
             combineWith={combineWith}
             setCombineWith={setCombineWith}
+            category={category}
+            setCategory={setCategory}
           />)
         }
       </div>

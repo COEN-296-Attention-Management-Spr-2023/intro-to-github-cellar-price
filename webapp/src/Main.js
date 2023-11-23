@@ -14,7 +14,9 @@ function Main({
   prefix,
   setPrefix,
   combineWith,
-  setCombineWith }) {
+  setCombineWith,
+  category,
+  setCategory }) {
   return (
     <article className="main">
       <Header 
@@ -28,6 +30,8 @@ function Main({
         setPrefix={setPrefix}
         combineWith={combineWith}
         setCombineWith={setCombineWith}
+        category={category}
+        setCategory={setCategory}
         />
       <Explanation />
       <ProductList results={results}/>
@@ -45,7 +49,9 @@ function Header({
   prefix,
   setPrefix,
   combineWith,
-  setCombineWith }) {
+  setCombineWith,
+  category,
+  setCategory }) {
   return (
     <header className="Header">
       <h1>Product Catalog</h1>
@@ -60,6 +66,8 @@ function Header({
         setPrefix={setPrefix}
         combineWith={combineWith}
         setCombineWith={setCombineWith}
+        category={category}
+        setCategory={setCategory}
         />
     </header>
   );
@@ -75,10 +83,21 @@ function ProductList({ results }) {
   function renderSearchResults(results) {
     const productList = results.map(product => 
       <li key={product.id} className="Product">
-        <h3>{capitalize(product.product)}</h3>
-        <dl>
-          <dt>Price:</dt> <dd>${product.price}</dd>
-        </dl>
+        <img src={product.img} alt=""/>
+        <div className="ProductContent">
+          <h3>{capitalize(product.product)}</h3>
+          <dl>
+            <dt>Price:</dt> <dd>${product.price}</dd>
+          </dl>
+          <dl>
+            <details>
+              <summary>Description</summary>
+              <p>
+                {product.desc}
+              </p>
+            </details>
+          </dl>
+        </div>
       </li>
     );
     return productList;
