@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import './Main.css';
 import SearchBox from './SearchBox.js';
+import Calculator from './Calculator.js';
 
 const capitalize = (string) => string.replace(/(\b\w)/gi, (char) => char.toUpperCase())
 
@@ -17,6 +19,9 @@ function Main({
   setCombineWith,
   category,
   setCategory }) {
+
+  const [cart, setCart] = useState([]);
+
   return (
     <article className="main">
       <Header 
@@ -33,8 +38,18 @@ function Main({
         category={category}
         setCategory={setCategory}
         />
-      <Explanation />
-      <ProductList results={results}/>
+      <div className="middle">
+        <ProductList 
+          name={name}
+          results={results}
+          cart={cart}
+          setCart={setCart}
+          />
+        <Calculator
+          cart={cart}
+          setCart={setCart}
+        />
+      </div>
     </article>
   );
 }
@@ -72,14 +87,7 @@ function Header({
     </header>
   );
 }
-function Explanation() {
-  return (
-    <p className="Explanation">
-      Welcome to to product catalog for the Cellar store. Use the search bar to find information about various products and their prices.
-    </p>
-  );
-}
-function ProductList({ results }) {
+function ProductList({ name,results,cart,setCart }) {
   function renderSearchResults(results) {
     const productList = results.map(product => 
       <li key={product.id} className="Product">
@@ -87,8 +95,35 @@ function ProductList({ results }) {
         <div className="ProductContent">
           <h3>{capitalize(product.product)}</h3>
           <dl>
-            <dt>Price:</dt> <dd>${product.price}</dd>
+            <dt>Price:</dt> 
+            <dd>${product.price}</dd>
           </dl>
+          <button onClick={() => {
+            let contained = false;
+
+            function checkContined(cartItem) {
+              if (cartItem.product.id === product.id) {
+                contained = true
+              }
+            }
+            cart.forEach(checkContined);
+
+            if (contained) {
+              setCart(cart.map(_cartItem => {
+                if (_cartItem.product.id === product.id) {
+                  return {product: _cartItem.product, amount: _cartItem.amount + 1};
+                }
+                else {
+                  return _cartItem;
+                }
+              }));
+            } else {
+              setCart([
+                ...cart,
+                {product: product, amount: 1}
+              ]);
+            }
+          }}>Add to Cart</button>
           <dl>
             <details>
               <summary>Description</summary>
@@ -105,12 +140,23 @@ function ProductList({ results }) {
 
   return (
     <>
-      { results.length > 0 &&
-      <ul className="ProductList">
-        {renderSearchResults(results)}
-      </ul>
+      {
+        results.length > 0 &&
+        <ul className="ProductList">
+          { name.length < 2 &&
+            <Explanation />
+          }
+          {renderSearchResults(results)}
+        </ul>
       }
     </>
+  );
+}
+function Explanation() {
+  return (
+    <p className="Explanation">
+      Welcome to to product catalog for the Cellar store. Use the search bar to find information about various products and their prices.
+    </p>
   );
 }
 
