@@ -1,18 +1,31 @@
 .Calculator {
-  margin: 1em 0 0 0;
+  text-align: center;
+  font-size: 20px;
+  margin: 1em 0 1em 0;
   flex-basis: 33%;
   max-width: 33%;
   flex-shrink: 0;
   display: flex;
   flex-flow: column;
-  padding: 0 4px;
+  /* padding: 0 4px; */
+  background-color: #f1f1f1;
+  padding: 10px 10px;
+  border-radius: 25px;
 }
+
+.Calculator h1 {
+  padding: 10px 5px;
+  font-weight: 1000000;
+}
+
 .Calculator input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 .CartList {
+  font-size: 15px;
+  background-color: #ffffff;
   margin: 1em 0 0 0;
   padding: 0;
   list-style: none;
@@ -49,11 +62,12 @@ input::-webkit-inner-spin-button {
   border-bottom: none;
 }
 .CartItem img {
+  object-fit: scale-down;
   display: inline-block;
   margin: 0 auto;
-  width: auto;
-  height: 40px;
-  max-width: 40px;
+  width: 80px;
+  height: 80px;
+  max-width: 80px;
   box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.8);
   border-radius: 2px;
   vertical-align: top;
@@ -68,4 +82,55 @@ input::-webkit-inner-spin-button {
 .CartItem h3 {
   margin-top: 0;
   margin-bottom: 0.15em;
+}
+
+.CartList .add{
+  width: 45px;
+  margin: 5px;
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px;
+}
+.CartList .add:hover{
+  background-color:rgba(157, 255, 0, 0.828);
+  color: black;
+
+}
+
+.CartList .add:active{
+  background-color:#046c46;
+  color: white;
+}
+
+.CartList .del{
+  width: 45px;
+  margin: 5px;
+  background-color: #e21818; /* red */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px;
+}
+.CartList .del:hover{
+  background-color:orange;
+  color: black;
+
+}
+
+.CartList .del:active{
+  background-color:#e21818;
+  color: white;
+}
+
+.amount {
+  font-size: 20px;
+  margin: 5px;
 }

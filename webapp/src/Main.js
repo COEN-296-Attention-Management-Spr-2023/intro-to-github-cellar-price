@@ -69,7 +69,7 @@ function Header({
   setCategory }) {
   return (
     <header className="Header">
-      <h1>Product Catalog</h1>
+      <h1>Cellar Product Catalog</h1>
       <SearchBox 
         suggestions={suggestions} 
         name={name} 
@@ -95,7 +95,7 @@ function ProductList({ name,results,cart,setCart }) {
         <div className="ProductContent">
           <h3>{capitalize(product.product)}</h3>
           <dl>
-            <dt>Price:</dt> 
+            <dt>Price: </dt> 
             <dd>${product.price}</dd>
           </dl>
           <button onClick={() => {

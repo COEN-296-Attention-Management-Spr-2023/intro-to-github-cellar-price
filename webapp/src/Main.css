@@ -5,10 +5,16 @@
   max-height: 100vh;
   max-width: 100%;
   margin: 0 auto;
+  /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
 }
+
 .Header h1 {
+  background-color: #f1f1f1;
+  padding: 20px 10px;
+  text-align: center;
   font-size: 2em;
   margin-top: 0;
+  border-radius: 10px;
 }
 .middle {
   margin: 1em 0 0 0;
@@ -21,7 +27,7 @@
 }
 .ProductList {
   margin: 1em 0 0 0;
-  padding: 0;
+  padding: 0px 75px;
   list-style: none;
   position: relative;
   overflow-y: scroll;
@@ -30,6 +36,28 @@
   max-width: 67%;
   flex-shrink: 0;
 }
+.ProductList button {
+  float: right;
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px;
+}
+.ProductList button:hover{
+  background-color:rgba(157, 255, 0, 0.828);
+  color: black;
+
+}
+
+.ProductList button:active{
+  background-color:#046c46;
+  color: white;
+}
+
 .ProductList:before,
 .ProductList:after {
   content: '';
@@ -58,9 +86,10 @@
   border-bottom: none;
 }
 .Product img {
+  object-fit: scale-down;
   display: inline-block;
   margin: 0 auto;
-  width: auto;
+  width: 80px;
   height: 80px;
   max-width: 80px;
   box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.8);
@@ -68,6 +97,7 @@
   vertical-align: top;
 }
 .Product .ProductContent {
+  font-size: 20px;
   text-align: left;
   display: inline-block;
   margin-left: 20px;
@@ -75,6 +105,10 @@
   width: calc(100% - 145px);
 }
 .Product h3 {
-  margin-top: 0;
-  margin-bottom: 0.15em;
+  margin-top: 0.2em;
+  margin-bottom: 0.20em;
+}
+
+.Product dl{
+  margin-bottom: 0.20em;
 }

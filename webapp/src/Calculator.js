@@ -18,13 +18,15 @@ function Calculator({ cart,setCart }) {
   return (
     <div className="Calculator">
       <dl>
-        <dt>Student Budget: </dt>
+        <h1>Shopping Cart</h1>
+        <dt>Budget: </dt>
         <input value={budget} onChange={e => {
             setBudget(e.target.value);}} 
             type="number" autoComplete="none" min="0.00" step="0.01"/>  
       </dl>
       <CartList cart={cart} setCart={setCart}/>
       <dl>
+        <h3></h3>
         <dt>Calculated Price:</dt> <dd>${Math.round((calculatePrice() + Number.EPSILON) * 100) / 100}</dd>
       </dl>
       <dl>
@@ -44,7 +46,7 @@ function CartList({ cart,setCart }) {
             <dt>Price:</dt> <dd>${cartItem.product.price}</dd>
           </dl>
           <dl>
-          <button onClick={() => {
+          <button className='del' onClick={() => {
               setCart(
                 cartItem.amount <= 10 ?
                   cart.filter(_cartItem =>
@@ -61,7 +63,7 @@ function CartList({ cart,setCart }) {
                   })
               );
             }}>-10</button>
-            <button onClick={() => {
+            <button className='del' onClick={() => {
               setCart(
                 cartItem.amount === 1 ?
                   cart.filter(_cartItem =>
@@ -78,8 +80,8 @@ function CartList({ cart,setCart }) {
                   })
               );
             }}>-</button>
-            <dt>{cartItem.amount}</dt>
-            <button onClick={() => {
+            <dt className='amount'>{cartItem.amount}</dt>
+            <button className='add' onClick={() => {
               setCart(cart.map(_cartItem => {
                 if (_cartItem.product.id === cartItem.product.id) {
                   return {product: _cartItem.product, amount: _cartItem.amount + 1};
@@ -89,7 +91,7 @@ function CartList({ cart,setCart }) {
                 }
               }));
             }}>+</button>
-            <button onClick={() => {
+            <button className='add' onClick={() => {
               setCart(cart.map(_cartItem => {
                 if (_cartItem.product.id === cartItem.product.id) {
                   return {product: _cartItem.product, amount: _cartItem.amount + 10};
